@@ -1,0 +1,9 @@
+import java.util.Scanner;
+public class Bluejack{
+public static void main(String[] args){
+System.out.println("Hello");
+Scanner sc = new Scanner(Ssyetm.in);
+int a = sc.nextInt;
+System.out.println(a);
+}
+}
