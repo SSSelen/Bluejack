@@ -11,7 +11,7 @@ public class Bluejack {
         for (int i = 0; i < 5; i++) {
             String randomrenk = renk(renk);
             int randomsayi = sayi(sayi);
-            System.out.println("Player's Hand:" +randomrenk+ " " +randomsayi);
+            System.out.println("Player's Hand: " +randomrenk+ " " +randomsayi);
         }
     }
         private static String renk (String[]renk){
