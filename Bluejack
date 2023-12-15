@@ -7,32 +7,42 @@ public class Bluejack {
 
 
         String[] renk = {"Red", "Blue", "Green", "Yellow"};
-        int[] sayi = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        for (int i = 0; i < 5; i++) {
+        int[] sayi = {+1, +2, +3, +4, +5, +6, -1, -2, -3, -4, -5, -6};
+        for (int i = 0; i < 3; i++) {
             String randomrenk = renk(renk);
             int randomsayi = sayi(sayi);
-            System.out.println("Player's Hand: " +randomrenk+ " " +randomsayi);
+            System.out.println("Player's Hand: " + randomrenk + " " + randomsayi);
+        }
+        for (int z = 0; z < 2; z++) {
+            Random random = new Random();
+            int olasilik = random.nextInt(100);
+            if (olasilik < 21) {
+
+                int t = random.nextInt(2);
+                if (t == 1) {
+                    System.out.println("+/-");
+                } else {
+                    System.out.println("x2");
+                }
+            } else {
+                System.out.println("Bekle");
+            }
         }
     }
-        private static String renk (String[]renk){
 
-                Random random = new Random();
-                int index = random.nextInt(renk.length);
-                return renk[index];
-            }
+    private static String renk(String[] renk) {
 
-        private static int sayi ( int[] sayi){
-
-                Random random = new Random();
-                int index = random.nextInt(sayi.length);
-                return sayi[index];
-            }
-Random random = new Random();
-int olasılık = random.nextInt(100);
-if(olasılık<21){
-        System.out.println("Özel Kart"+olasılık);
-    } else {
-    System.out.println("Normal Kart" +olasılık);
-}
-        }
+        Random random = new Random();
+        int index = random.nextInt(renk.length);
+        return renk[index];
     }
+
+    private static int sayi(int[] sayi) {
+
+        Random random = new Random();
+        int index = random.nextInt(sayi.length);
+        return sayi[index];
+    }
+
+    }
+
