@@ -27,11 +27,11 @@ public class Bluejack {
                 int index = random.nextInt(sayi.length);
                 return sayi[index];
             }
- Random random = new Random();
-int olasılık = random.nextInt();
+Random random = new Random();
+int olasılık = random.nextInt(100);
 if(olasılık<21){
         System.out.println("Özel Kart"+olasılık);
-    } else if(olasılık>20 && 100>olasılık){
+    } else {
     System.out.println("Normal Kart" +olasılık);
 }
         }
