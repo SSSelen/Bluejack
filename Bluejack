@@ -1,0 +1,31 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Bluejack {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+
+        String[] renk = {"Red", "Blue", "Green", "Yellow"};
+        int[] sayi = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (int i = 0; i < 5; i++) {
+            String randomrenk = renk(renk);
+            int randomsayi = sayi(sayi);
+            System.out.println("Hello");
+        }
+    }
+        private static String renk (String[]renk){
+
+                Random random = new Random();
+                int index = random.nextInt(renk.length);
+                return renk[index];
+            }
+
+        private static int sayi ( int[] sayi){
+
+                Random random = new Random();
+                int index = random.nextInt(sayi.length);
+                return sayi[index];
+            }
+
+    }
