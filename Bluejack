@@ -6,23 +6,25 @@ public class Bluejack {
         Scanner sc = new Scanner(System.in);
 
         String[] renk1 = {"Red", "Blue", "Green", "Yellow"};
-        int[] sayi1 = {+1, +2, +3, +4, +5, +6, -1, -2, -3, -4, -5, -6};
-        for (int i = 0; i < 3; i++) {
+        int[] sayi1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (int i = 0; i < 5; i++) {
             String randomrenk1 = renk1(renk1);
             int randomsayi1 = sayi1(sayi1);
+            System.out.println(randomrenk1 + " " + randomsayi1);
+        }
 
         String[] renk2 = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi2 = {+1, +2, +3, +4, +5, +6, -1, -2, -3, -4, -5, -6};
         for (int i = 0; i < 3; i++) {
             String randomrenk2 = renk2(renk2);
             int randomsayi2 = sayi2(sayi2);
-
+            System.out.println(randomrenk2 + " " + randomsayi2);
         }
+
         for (int z = 0; z < 2; z++) {
             Random random = new Random();
             int olasilik = random.nextInt(100);
             if (olasilik < 21) {
-
                 int t = random.nextInt(2);
                 if (t == 1) {
                     System.out.println("+/-");
@@ -36,32 +38,28 @@ public class Bluejack {
     }
 
     private static String renk1(String[] renk1) {
-
         Random random = new Random();
         int index = random.nextInt(renk1.length);
         return renk1[index];
     }
 
     private static int sayi1(int[] sayi1) {
-
         Random random = new Random();
         int index = random.nextInt(sayi1.length);
         return sayi1[index];
-
-            private static String renk2(String[] renk2) {
-
-                Random random = new Random();
-                int index = random.nextInt(renk2.length);
-                return renk2[index];
-            }
-
-            private static int sayi2(int[] sayi2) {
-
-                Random random = new Random();
-                int index = random.nextInt(sayi2.length);
-                return sayi2[index];
     }
 
+    private static String renk2(String[] renk2) {
+        Random random = new Random();
+        int index = random.nextInt(renk2.length);
+        return renk2[index];
     }
+
+    private static int sayi2(int[] sayi2) {
+        Random random = new Random();
+        int index = random.nextInt(sayi2.length);
+        return sayi2[index];
+    }
+}
 
 
