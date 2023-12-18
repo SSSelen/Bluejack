@@ -4,6 +4,14 @@ import java.util.Arrays;
 public class Bluejack {
     public static void main(String[] args) {
 
+        String[] PlayerHand = olustur();
+        String[] CompHand = olustur();
+
+        System.out.println("Player's Hand: ");
+        PrintHand(PlayerHand);
+    }
+    private static String[] olustur() {
+
         String[] renk1 = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
@@ -55,13 +63,16 @@ public class Bluejack {
         String[] deste = new String[deste3.length + birlesik.length];
         System.arraycopy(deste3, 0, deste, 0, deste3.length);
         System.arraycopy(birlesik, 0, deste, deste3.length, birlesik.length);
+        return deste;
+    }
+    private static void PrintHand(String[] hand){
 
-        System.out.println("Player's Hand: ");
         for (int i = 0; i < 4; i++) {
-            String randomKart = deste[new Random().nextInt(deste.length)];
+            String randomKart = hand[new Random().nextInt(hand.length)];
             System.out.println(randomKart);
         }
     }
 }
+
 
 
