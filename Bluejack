@@ -1,25 +1,37 @@
 import java.util.Random;
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Bluejack {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
         String[] renk1 = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        String[] deste1 = new String[5];
+
         for (int i = 0; i < 5; i++) {
-            String randomrenk1 = renk1(renk1);
-            int randomsayi1 = sayi1(sayi1);
-            System.out.println(randomrenk1 + " " + randomsayi1);
+            String randomRenk = renk1[new Random().nextInt(renk1.length)];
+            int randomSayi = sayi1[new Random().nextInt(sayi1.length)];
+            deste1[i] = randomRenk + " " + randomSayi;
         }
 
         String[] renk2 = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi2 = {+1, +2, +3, +4, +5, +6, -1, -2, -3, -4, -5, -6};
+
+        String[] deste2 = new String[3];
+
         for (int i = 0; i < 3; i++) {
-            String randomrenk2 = renk2(renk2);
-            int randomsayi2 = sayi2(sayi2);
-            System.out.println(randomrenk2 + " " + randomsayi2);
+            String randomRenk2 = renk2[new Random().nextInt(renk2.length)];
+            int randomSayi2 = sayi2[new Random().nextInt(sayi2.length)];
+            deste2[i] = randomRenk2 + " " + randomSayi2;
         }
+
+        String[] birlesik = new String[deste1.length + deste2.length];
+
+        System.arraycopy(deste1, 0, birlesik, 0, deste1.length);
+        System.arraycopy(deste2, 0, birlesik, deste1.length, deste2.length);
+
+        String[] deste3 = new String[2];
 
         for (int z = 0; z < 2; z++) {
             Random random = new Random();
@@ -27,42 +39,28 @@ public class Bluejack {
             if (olasilik < 21) {
                 int t = random.nextInt(2);
                 if (t == 1) {
-                    System.out.println("+/-");
+                    deste3[z] = "+/-";
                 } else {
-                    System.out.println("x2");
+                    deste3[z] = "x2";
                 }
             } else {
                 String[] beklerenk = {"Red", "Blue", "Green", "Yellow"};
                 int[] beklesayi = {-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6};
-                String randombeklerenk = renk1(beklerenk);
-                int randombeklesayi = sayi1(beklesayi);
-                System.out.println(randombeklerenk + " " +randombeklesayi);
+                String randombeklerenk = beklerenk[new Random().nextInt(beklerenk.length)];
+                int randombeklesayi = beklesayi[new Random().nextInt(beklesayi.length)];
+                deste3[z] = randombeklerenk + " " + randombeklesayi;
             }
         }
-    }
 
-    private static String renk1(String[] renk1) {
-        Random random = new Random();
-        int index = random.nextInt(renk1.length);
-        return renk1[index];
-    }
+        String[] deste = new String[deste3.length + birlesik.length];
+        System.arraycopy(deste3, 0, deste, 0, deste3.length);
+        System.arraycopy(birlesik, 0, deste, deste3.length, birlesik.length);
 
-    private static int sayi1(int[] sayi1) {
-        Random random = new Random();
-        int index = random.nextInt(sayi1.length);
-        return sayi1[index];
-    }
-
-    private static String renk2(String[] renk2) {
-        Random random = new Random();
-        int index = random.nextInt(renk2.length);
-        return renk2[index];
-    }
-
-    private static int sayi2(int[] sayi2) {
-        Random random = new Random();
-        int index = random.nextInt(sayi2.length);
-        return sayi2[index];
+        System.out.println("Player's Hand: ");
+        for (int i = 0; i < 4; i++) {
+            String randomKart = deste[new Random().nextInt(deste.length)];
+            System.out.println(randomKart);
+        }
     }
 }
 
