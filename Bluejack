@@ -1,15 +1,31 @@
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Arrays;
 
 public class Bluejack {
+    private static Random random = new Random();
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Write 'start' to start the game: ");
+        String x = sc.next();
+
+        if (x.equals("start")) {
+            basla();
+        } else {
+            System.out.println("Please write 'start': ");
+        }
 
         String[] PlayerHand = olustur();
         String[] CompHand = olustur();
 
         System.out.println("Player's Hand: ");
         PrintHand(PlayerHand);
+
+
     }
+
+
     private static String[] olustur() {
 
         String[] renk1 = {"Red", "Blue", "Green", "Yellow"};
@@ -65,14 +81,30 @@ public class Bluejack {
         System.arraycopy(birlesik, 0, deste, deste3.length, birlesik.length);
         return deste;
     }
-    private static void PrintHand(String[] hand){
+
+    private static void PrintHand(String[] hand) {
 
         for (int i = 0; i < 4; i++) {
             String randomKart = hand[new Random().nextInt(hand.length)];
             System.out.println(randomKart);
         }
     }
-}
 
+    public static void basla() {
+        Random random = new Random();
+
+        String[] renk = {"Red", "Blue", "Green", "Yellow"};
+        int[] sayi = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        String[] gamedeste = new String[1];
+
+        for (int i = 0; i < 1; i++) {
+            String randomRenk = renk[new Random().nextInt(renk.length)];
+            int randomSayi = sayi[new Random().nextInt(sayi.length)];
+            gamedeste[i] = randomRenk + " " + randomSayi;
+            System.out.println("Player's Deck: " +randomRenk + " " + randomSayi);
+        }
+    }
+}
 
 
