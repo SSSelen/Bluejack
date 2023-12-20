@@ -7,22 +7,16 @@ public class Bluejack {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Write 'start' to start the game: ");
-        String x = sc.next();
 
-        if (x.equals("start")) {
-            basla();
-        } else {
-            System.out.println("Please write 'start': ");
+        while(true) {
+            System.out.println("Feeling lucky? Write 'start' to start the game: ");
+            String x = sc.next();
+
+            if (x.equalsIgnoreCase("start")) {
+                basla();
+                break;
+            }
         }
-
-        String[] PlayerHand = olustur();
-        String[] CompHand = olustur();
-
-        System.out.println("Player's Hand: ");
-        PrintHand(PlayerHand);
-
-
     }
 
 
@@ -103,8 +97,18 @@ public class Bluejack {
             int randomSayi = sayi[new Random().nextInt(sayi.length)];
             gamedeste[i] = randomRenk + " " + randomSayi;
             System.out.println("Player's Deck: " +randomRenk + " " + randomSayi);
+            System.out.println("Comp's Deck: " +randomRenk + " " + randomSayi);
+            String[] PlayerHand = olustur();
+            String[] CompHand = olustur();
+
+            System.out.println("Player's Hand: ");
+            PrintHand(PlayerHand);
+            System.out.println("Comp's Hand: ");
+            PrintHand(CompHand);
+
+
+
         }
     }
 }
-
 
