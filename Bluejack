@@ -4,17 +4,34 @@ import java.util.Arrays;
 
 public class Bluejack {
     private static Random random = new Random();
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
 
-        while(true) {
+
+        while (true) {
             System.out.println("Feeling lucky? Write 'start' to start the game: ");
             String x = sc.next();
 
             if (x.equalsIgnoreCase("start")) {
                 basla();
                 break;
+            }
+
+        }
+        while (true) {
+            System.out.println("Stand or End?: ");
+
+            String m = sc.next();
+            if (m.equalsIgnoreCase("end")) {
+                basla();
+                break;
+            } else if (m.equalsIgnoreCase("stand")) {
+
+            } else {
+                System.out.println("Stand or End?");
+                break;
+
             }
         }
     }
@@ -96,19 +113,23 @@ public class Bluejack {
             String randomRenk = renk[new Random().nextInt(renk.length)];
             int randomSayi = sayi[new Random().nextInt(sayi.length)];
             gamedeste[i] = randomRenk + " " + randomSayi;
-            System.out.println("Player's Deck: " +randomRenk + " " + randomSayi);
-            System.out.println("Comp's Deck: " +randomRenk + " " + randomSayi);
-            String[] PlayerHand = olustur();
-            String[] CompHand = olustur();
+            System.out.println("Player's Deck: " + randomRenk + " " + randomSayi);
+            String randomRenkk = renk[new Random().nextInt(renk.length)];
+            int randomSayii = sayi[new Random().nextInt(sayi.length)];
+            gamedeste[i] = randomRenk + " " + randomSayi;
+            System.out.println("Comp's Deck: " + randomRenkk + " " + randomSayii);
+        }
+        String[] PlayerHand = olustur();
+        String[] CompHand = olustur();
 
-            System.out.println("Player's Hand: ");
-            PrintHand(PlayerHand);
-            System.out.println("Comp's Hand: ");
-            PrintHand(CompHand);
+        System.out.println("Player's Hand: ");
+        PrintHand(PlayerHand);
 
 
+        //System.out.println("Comp's Hand: ");
+        //PrintHand(CompHand);
+
+
+            }
 
         }
-    }
-}
-
