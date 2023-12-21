@@ -101,15 +101,29 @@ public class Bluejack {
 
             System.out.println("Player's Hand: ");
             PrintHand(PlayerHand);
+            //System.out.println("Comp's Hand: ");
+            //PrintHand(CompHand);
 
             int playerDeckTotal = calculateDeckTotal(PlayerDeck);
             int compDeckTotal = calculateDeckTotal(CompDeck);
 
+            boolean playerBlueCards = checkBlueCards(PlayerDeck);
+            boolean compBlueCards = checkBlueCards(CompDeck);
 
+            if (playerBlueCards) {
+                System.out.println("Player's Deck Total (Blue): " + playerDeckTotal);
+            } else {
+                System.out.println("Player's Deck Total: " + playerDeckTotal);
+            }
 
+            if (compBlueCards) {
+                System.out.println("Comp's Deck Total (Blue): " + compDeckTotal);
+            } else {
+                System.out.println("Comp's Deck Total: " + compDeckTotal);
+            }
 
             while (true) {
-                System.out.println("Stand or End?: ");
+                System.out.println("Stand, Play a Card or End?: ");
                 String m = sc.next();
                 if (m.equalsIgnoreCase("end")) {
                     randomRenk = renk[random.nextInt(renk.length)];
@@ -136,30 +150,71 @@ public class Bluejack {
 
 
 
-                    if(compDeckTotal > 20) {
-                        System.out.println("Comp busted! You got lucky.");
+                    if(compDeckTotal > 20 && playerDeckTotal > 20) {
+                        System.out.println("So who won? Friendship.");
                         System.out.println("Ready for another round? (yes/no): ");
-                        String playAgain = sc.next();
-                        if (!playAgain.equalsIgnoreCase("yes")) {
+                        String l = sc.next();
+                        if (l.equalsIgnoreCase("yes")) {
                             break;
                         }
                         break;
                     } else if (playerDeckTotal > 20) {
                         System.out.println("Bust! Easy there tiger, you passed 20.");
                         System.out.println("Ready for another round? (yes/no): ");
-                        String playAgain = sc.next();
-                        if (!playAgain.equalsIgnoreCase("yes")) {
+                        String l = sc.next();
+                        if (l.equalsIgnoreCase("yes")) {
+                            break;
+                        }
+                        break;
+                    } else if(compDeckTotal > 20 ) {
+                        System.out.println("Comp busted! You got lucky.");
+                        System.out.println("Ready for another round? (yes/no): ");
+                        String l = sc.next();
+                        if (l.equalsIgnoreCase("yes")) {
                             break;
                         }
                         break;
                     }
+
                 } else if (m.equalsIgnoreCase("stand")) {
+                    if(playerDeckTotal == 20 && compDeckTotal != 20){
+                    System.out.println("You win!");
                     break;
+                    } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal){
+                        System.out.println("You lose!");
+                        break;
+                    }else if (20 > playerDeckTotal && playerDeckTotal > compDeckTotal){
+                        System.out.println("You win!");
+                        break;
+                    }else if (20 == playerDeckTotal && 20 == compDeckTotal) {
+                        System.out.println("So who won? Friendship.");
+                        break;
+                    }else if(compDeckTotal == playerDeckTotal){
+                        System.out.println("So who won? Friendship.");
+                        break;
+                    } else{
+                        System.out.println("You lose!");
+                        break;
+                    }
                 }else if (m.equalsIgnoreCase("play a card")){
+                   
+                   
                     break;
                 }
             }
+            playerBlueCards = checkBlueCards(PlayerDeck);
+            compBlueCards = checkBlueCards(CompDeck);
+
+
         }
+    }
+    private static boolean checkBlueCards(String[] deck) {
+        for (String card : deck) {
+            if (card.startsWith("Blue")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static int calculateDeckTotal(String[] deck) {
