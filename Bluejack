@@ -1,14 +1,11 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Bluejack {
     private static Random random = new Random();
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-
         while (true) {
             System.out.println("Feeling lucky? Write 'start' to start the game: ");
             String x = sc.next();
@@ -17,28 +14,10 @@ public class Bluejack {
                 basla();
                 break;
             }
-
-        }
-        while (true) {
-            System.out.println("Stand or End?: ");
-
-            String m = sc.next();
-            if (m.equalsIgnoreCase("end")) {
-                basla();
-                break;
-            } else if (m.equalsIgnoreCase("stand")) {
-
-            } else {
-                System.out.println("Stand or End?");
-                break;
-
-            }
         }
     }
 
-
     private static String[] olustur() {
-
         String[] renk1 = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
@@ -69,7 +48,7 @@ public class Bluejack {
         String[] deste3 = new String[2];
 
         for (int z = 0; z < 2; z++) {
-            Random random = new Random();
+
             int olasilik = random.nextInt(100);
             if (olasilik < 21) {
                 int t = random.nextInt(2);
@@ -94,7 +73,6 @@ public class Bluejack {
     }
 
     private static void PrintHand(String[] hand) {
-
         for (int i = 0; i < 4; i++) {
             String randomKart = hand[new Random().nextInt(hand.length)];
             System.out.println(randomKart);
@@ -102,34 +80,102 @@ public class Bluejack {
     }
 
     public static void basla() {
-        Random random = new Random();
-
         String[] renk = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-        String[] gamedeste = new String[1];
-
-        for (int i = 0; i < 1; i++) {
-            String randomRenk = renk[new Random().nextInt(renk.length)];
-            int randomSayi = sayi[new Random().nextInt(sayi.length)];
-            gamedeste[i] = randomRenk + " " + randomSayi;
-            System.out.println("Player's Deck: " + randomRenk + " " + randomSayi);
-            String randomRenkk = renk[new Random().nextInt(renk.length)];
-            int randomSayii = sayi[new Random().nextInt(sayi.length)];
-            gamedeste[i] = randomRenk + " " + randomSayi;
-            System.out.println("Comp's Deck: " + randomRenkk + " " + randomSayii);
-        }
         String[] PlayerHand = olustur();
         String[] CompHand = olustur();
 
-        System.out.println("Player's Hand: ");
-        PrintHand(PlayerHand);
+        while (true) {
+            String randomRenk = renk[random.nextInt(renk.length)];
+            int randomSayi = sayi[random.nextInt(sayi.length)];
+            String[] PlayerDeck = {randomRenk + " " + randomSayi};
+            System.out.println("Player's Deck: " + randomRenk + " " + randomSayi);
+
+            randomRenk = renk[random.nextInt(renk.length)];
+            randomSayi = sayi[random.nextInt(sayi.length)];
+            String[] CompDeck = {randomRenk + " " + randomSayi};
+            System.out.println("Comp's Deck: " + randomRenk + " " + randomSayi);
 
 
-        //System.out.println("Comp's Hand: ");
-        //PrintHand(CompHand);
+
+            System.out.println("Player's Hand: ");
+            PrintHand(PlayerHand);
+
+            int playerDeckTotal = calculateDeckTotal(PlayerDeck);
+            int compDeckTotal = calculateDeckTotal(CompDeck);
 
 
+
+
+            while (true) {
+                System.out.println("Stand or End?: ");
+                String m = sc.next();
+                if (m.equalsIgnoreCase("end")) {
+                    randomRenk = renk[random.nextInt(renk.length)];
+                    randomSayi = sayi[random.nextInt(sayi.length)];
+                    String playerRandomNew = randomRenk + " " + randomSayi;
+                    System.out.println("Player Draw: " + playerRandomNew);
+                    String[] newPlayerDeck = new String[PlayerDeck.length + 1];
+                    System.arraycopy(PlayerDeck, 0, newPlayerDeck, 0, PlayerDeck.length);
+                    newPlayerDeck[PlayerDeck.length] = playerRandomNew;
+                    PlayerDeck = newPlayerDeck;
+                    playerDeckTotal = calculateDeckTotal(PlayerDeck);
+                    System.out.println("Player's Deck Total: " + playerDeckTotal);
+
+                    randomRenk = renk[random.nextInt(renk.length)];
+                    randomSayi = sayi[random.nextInt(sayi.length)];
+                    String compRandomNew = randomRenk + " " + randomSayi;
+                    System.out.println("Comp Draw: " + compRandomNew);
+                    String[] newCompDeck = new String[CompDeck.length + 1];
+                    System.arraycopy(CompDeck, 0, newCompDeck, 0, CompDeck.length);
+                    newCompDeck[CompDeck.length] = compRandomNew;
+                    CompDeck = newCompDeck;
+                    compDeckTotal = calculateDeckTotal(CompDeck);
+                    System.out.println("Comp's Deck Total: " + compDeckTotal);
+
+
+
+                    if(compDeckTotal > 20) {
+                        System.out.println("Comp busted! You got lucky.");
+                        System.out.println("Ready for another round? (yes/no): ");
+                        String playAgain = sc.next();
+                        if (!playAgain.equalsIgnoreCase("yes")) {
+                            break;
+                        }
+                        break;
+                    } else if (playerDeckTotal > 20) {
+                        System.out.println("Bust! Easy there tiger, you passed 20.");
+                        System.out.println("Ready for another round? (yes/no): ");
+                        String playAgain = sc.next();
+                        if (!playAgain.equalsIgnoreCase("yes")) {
+                            break;
+                        }
+                        break;
+                    }
+                } else if (m.equalsIgnoreCase("stand")) {
+                    break;
+                }else if (m.equalsIgnoreCase("play a card")){
+                    break;
+                }
             }
-
         }
+    }
+
+    private static int calculateDeckTotal(String[] deck) {
+        int total = 0;
+        for (String card : deck) {
+            total += getValue(card);
+        }
+        return total;
+    }
+
+    private static int getValue(String card) {
+        String[] parts = card.split(" ");
+        if (parts.length == 2) {
+            return Integer.parseInt(parts[1]);
+        } else {
+            return 0;
+        }
+    }
+}
