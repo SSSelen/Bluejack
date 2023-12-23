@@ -1,12 +1,19 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Bluejack {
     private static Random random = new Random();
     private static Scanner sc = new Scanner(System.in);
     private static String[] PlayerHand;
     private static String[] CompHand;
+    private static String PlayerName;
+    private static String[] GameHistoryArray = new String[10];
+    private static int GameHistoryIndex = 0;
 
     private static int playerWins = 0;
     private static int compWins = 0;
@@ -14,20 +21,20 @@ public class Bluejack {
 
     public static void main(String[] args) {
 
+        System.out.print("Enter your name: ");
+        PlayerName = sc.next();
 
+        while (true) {
+            System.out.println("Feeling lucky? Write 'start' to start the game: ");
+            String x = sc.next();
 
-    while (true) {
-        System.out.println("Feeling lucky? Write 'start' to start the game: ");
-        String x = sc.next();
+            if (x.equalsIgnoreCase("start")) {
 
-        if (x.equalsIgnoreCase("start")) {
-
-            basla();
-            break;
+                basla();
+                break;
+            }
         }
     }
-    }
-
 
 
     private static String[] olustur() {
@@ -101,18 +108,13 @@ public class Bluejack {
     }
 
 
-
     public static void basla() {
         String[] renk = {"Red", "Blue", "Green", "Yellow"};
         int[] sayi = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 
-
         PlayerHand = olustur();
         CompHand = olustur();
-
-
-
 
 
         while (true) {
@@ -149,7 +151,7 @@ public class Bluejack {
                 System.out.println("Comp's Deck Total: " + compDeckTotal);
             }
 
-            while(true) {
+            while (true) {
                 System.out.println("Stand, Card or End?: ");
                 String m = sc.next();
                 if (m.equalsIgnoreCase("end")) {
@@ -177,12 +179,13 @@ public class Bluejack {
 
                     if (compDeckTotal > 20 && playerDeckTotal > 20) {
                         System.out.println("So who won? Friendship.");
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -191,12 +194,13 @@ public class Bluejack {
                     } else if (playerDeckTotal > 20) {
                         System.out.println("Bust! Easy there tiger, you passed 20.");
                         compWins++;
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -205,12 +209,13 @@ public class Bluejack {
                     } else if (compDeckTotal > 20) {
                         System.out.println("Comp busted! You got lucky.");
                         playerWins++;
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -221,12 +226,13 @@ public class Bluejack {
                     if (playerDeckTotal == 20 && compDeckTotal != 20) {
                         System.out.println("You win!");
                         playerWins++;
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -235,12 +241,13 @@ public class Bluejack {
                     } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
                         System.out.println("You lose!");
                         compWins++;
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -249,12 +256,13 @@ public class Bluejack {
                     } else if (20 > playerDeckTotal && playerDeckTotal > compDeckTotal) {
                         System.out.println("You win!");
                         playerWins++;
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -262,12 +270,13 @@ public class Bluejack {
                         break;
                     } else if (20 == playerDeckTotal && 20 == compDeckTotal) {
                         System.out.println("So who won? Friendship.");
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -275,12 +284,13 @@ public class Bluejack {
                         break;
                     } else if (compDeckTotal == playerDeckTotal) {
                         System.out.println("So who won? Friendship.");
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -289,12 +299,13 @@ public class Bluejack {
                     } else {
                         System.out.println("You lose!");
                         compWins++;
-                        System.out.println("Player's Wins= " + playerWins +" | Comp's Wins= " +compWins);
+                        System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
+                            History(PlayerName, playerWins, compWins);
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -343,6 +354,52 @@ public class Bluejack {
         }
 
     }
+
+    private static void History(String PlayerName, int playerWins, int compWins) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String date = dateFormat.format(new Date());
+
+
+        String gameHistory = PlayerName + ": " + playerWins + " - Comp: " + compWins + "  " + date;
+
+
+        GameHistoryArray[GameHistoryIndex] = gameHistory;
+        GameHistoryIndex = (GameHistoryIndex + 1) % 10;
+
+
+        writeGameHistoryToFile();
+    }
+
+    private static void writeGameHistoryToFile() {
+        FileWriter writer = null;
+
+        try {
+
+            writer = new FileWriter("game_history.txt");
+
+
+            for (String game : GameHistoryArray) {
+                if (game != null) {
+                    writer.write(game + "\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
     private static boolean checkBlueCards(String[] deck) {
         for (String card : deck) {
             if (card.startsWith("Blue")) {
@@ -369,3 +426,4 @@ public class Bluejack {
         }
     }
 }
+
