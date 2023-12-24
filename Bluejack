@@ -145,20 +145,6 @@ public class Bluejack {
             int playerDeckTotal = calculateDeckTotal(PlayerDeck, random.nextInt(11) + 1);
             int compDeckTotal = calculateDeckTotal(CompDeck, random.nextInt(11) + 1);
 
-            boolean playerBlueCards = checkBlueCards(PlayerDeck);
-            boolean compBlueCards = checkBlueCards(CompDeck);
-
-            if (playerBlueCards) {
-                System.out.println("Player's Deck Total (Blue): " + playerDeckTotal);
-            } else {
-                System.out.println("Player's Deck Total: " + playerDeckTotal);
-            }
-
-            if (compBlueCards) {
-                System.out.println("Comp's Deck Total (Blue): " + compDeckTotal);
-            } else {
-                System.out.println("Comp's Deck Total: " + compDeckTotal);
-            }
 
             while (true) {
                 System.out.println("Stand, Card or End?: ");
@@ -175,6 +161,8 @@ public class Bluejack {
                     playerDeckTotal = calculateDeckTotal(PlayerDeck, random.nextInt(11) + 1);
                     System.out.println("Player's Deck Total: " + playerDeckTotal);
 
+                    String cardToPlay = findCardToComplete20(compDeckTotal);
+                    
                     if(compDeckTotal <= 15){
                         randomRenk = renk[random.nextInt(renk.length)];
                         randomSayi = sayi[random.nextInt(sayi.length)];
@@ -189,6 +177,7 @@ public class Bluejack {
 
                     }else if (compDeckTotal >= 18 && compDeckTotal <= 20){
                         //stop and control
+                        System.out.println("Computer stands.");
                         if (playerDeckTotal == 20 && compDeckTotal != 20) {
                             System.out.println("You win!");
                             playerWins++;
@@ -263,7 +252,7 @@ public class Bluejack {
                             }
                             break;
                         } else {
-                            System.out.println("You Close!");
+                            System.out.println("You lose!");
                             compWins++;
                             System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                             if (playerWins == 3 || compWins == 3) {
@@ -280,8 +269,113 @@ public class Bluejack {
                         }
                     } else if (compDeckTotal == 16 || compDeckTotal == 17) {
 // % +50 ihtimalle end ya da stand
+                        int t = random.nextInt(2);
+                        if (t == 1) {
+                            System.out.println("Computer stands.");
+                            if (playerDeckTotal == 20 && compDeckTotal != 20) {
+                                System.out.println("You win!");
+                                playerWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
+                                System.out.println("You lose!");
+                                compWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 > playerDeckTotal && playerDeckTotal > compDeckTotal) {
+                                System.out.println("You win!");
+                                playerWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 == playerDeckTotal && 20 == compDeckTotal) {
+                                System.out.println("So who won? Friendship.");
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (compDeckTotal == playerDeckTotal) {
+                                System.out.println("So who won? Friendship.");
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else {
+                                System.out.println("You lose!");
+                                compWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            }
+                        } else {
+                            randomRenk = renk[random.nextInt(renk.length)];
+                            randomSayi = sayi[random.nextInt(sayi.length)];
+                            String compRandomNew = randomRenk + " " + randomSayi;
+                            System.out.println("Comp Draw: " + compRandomNew);
+                            String[] newCompDeck = new String[CompDeck.length + 1];
+                            System.arraycopy(CompDeck, 0, newCompDeck, 0, CompDeck.length);
+                            newCompDeck[CompDeck.length] = compRandomNew;
+                            CompDeck = newCompDeck;
+                            compDeckTotal = calculateDeckTotal(CompDeck, random.nextInt(11) + 1);
+                            System.out.println("Comp's Deck Total: " + compDeckTotal);
+
+                        }
                     } else {
-                        String cardToPlay = findCardToComplete20(compDeckTotal);
+                        //String cardToPlay = findCardToComplete20(compDeckTotal);
                         if (cardToPlay != null) {
                             System.out.println("Comp played: " + cardToPlay);
                             String[] newCompDeck = new String[CompDeck.length + 1];
@@ -341,6 +435,8 @@ public class Bluejack {
                     }
                 } else if (m.equalsIgnoreCase("stand")) {
 
+                    String cardToPlay = findCardToComplete20(compDeckTotal);
+                    
                     if(compDeckTotal <= 15){
                         randomRenk = renk[random.nextInt(renk.length)];
                         randomSayi = sayi[random.nextInt(sayi.length)];
@@ -355,6 +451,7 @@ public class Bluejack {
 
                     }else if (compDeckTotal >= 18 && compDeckTotal <= 20){
                         //stop and control
+                        System.out.println("Computer stands.");
                         if (playerDeckTotal == 20 && compDeckTotal != 20) {
                             System.out.println("You win!");
                             playerWins++;
@@ -371,7 +468,7 @@ public class Bluejack {
                             }
                             break;
                         } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
-                            System.out.println("You Dlose!");
+                            System.out.println("You lose!");
                             compWins++;
                             System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                             if (playerWins == 3 || compWins == 3) {
@@ -429,7 +526,7 @@ public class Bluejack {
                             }
                             break;
                         } else {
-                            System.out.println("You Flose!");
+                            System.out.println("You lose!");
                             compWins++;
                             System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                             if (playerWins == 3 || compWins == 3) {
@@ -446,8 +543,113 @@ public class Bluejack {
                         }
                     } else if (compDeckTotal == 16 || compDeckTotal == 17) {
 // % +50 ihtimalle end ya da stand
+                        int t = random.nextInt(2);
+                        if (t == 1) {
+                            System.out.println("Computer stands.");
+                            if (playerDeckTotal == 20 && compDeckTotal != 20) {
+                                System.out.println("You win!");
+                                playerWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
+                                System.out.println("You lose!");
+                                compWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 > playerDeckTotal && playerDeckTotal > compDeckTotal) {
+                                System.out.println("You win!");
+                                playerWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 == playerDeckTotal && 20 == compDeckTotal) {
+                                System.out.println("So who won? Friendship.");
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (compDeckTotal == playerDeckTotal) {
+                                System.out.println("So who won? Friendship.");
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else {
+                                System.out.println("You lose!");
+                                compWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            }
+                        } else {
+                            randomRenk = renk[random.nextInt(renk.length)];
+                            randomSayi = sayi[random.nextInt(sayi.length)];
+                            String compRandomNew = randomRenk + " " + randomSayi;
+                            System.out.println("Comp Draw: " + compRandomNew);
+                            String[] newCompDeck = new String[CompDeck.length + 1];
+                            System.arraycopy(CompDeck, 0, newCompDeck, 0, CompDeck.length);
+                            newCompDeck[CompDeck.length] = compRandomNew;
+                            CompDeck = newCompDeck;
+                            compDeckTotal = calculateDeckTotal(CompDeck, random.nextInt(11) + 1);
+                            System.out.println("Comp's Deck Total: " + compDeckTotal);
+
+                        }
                     } else {
-                        String cardToPlay = findCardToComplete20(compDeckTotal);
+                        //String cardToPlay = findCardToComplete20(compDeckTotal);
                         if (cardToPlay != null) {
                             System.out.println("Comp played: " + cardToPlay);
                             String[] newCompDeck = new String[CompDeck.length + 1];
@@ -557,7 +759,6 @@ public class Bluejack {
                     } else {
                         System.out.println("Player's Hand: " + Arrays.toString(PlayerHand));
 
-                        System.out.println("Comp's Hand: " + Arrays.toString(CompHand));
 
 
                         System.out.println("Please enter the index of the card you want to play (1-4): ");
@@ -615,8 +816,7 @@ public class Bluejack {
                             System.out.println("Invalid card index. Please enter a number between 1 and 4.");
                         }
                     }
-                    playerBlueCards = checkBlueCards(PlayerDeck);
-                    compBlueCards = checkBlueCards(CompDeck);
+                    String cardToPlay = findCardToComplete20(compDeckTotal);
                     if(compDeckTotal <= 15){
                         randomRenk = renk[random.nextInt(renk.length)];
                         randomSayi = sayi[random.nextInt(sayi.length)];
@@ -631,7 +831,8 @@ public class Bluejack {
 
                     }else if (compDeckTotal >= 18 && compDeckTotal <= 20){
                         //stop and control
-                        System.out.println("Comp stand Duo!");
+                        System.out.println("Computer stands.");
+                       
                         if (playerDeckTotal == 20 && compDeckTotal != 20) {
                             System.out.println("You win!");
                             playerWins++;
@@ -648,7 +849,7 @@ public class Bluejack {
                             }
                             break;
                         } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
-                            System.out.println("You Tlose!");
+                            System.out.println("You lose!");
                             compWins++;
                             System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                             if (playerWins == 3 || compWins == 3) {
@@ -706,7 +907,7 @@ public class Bluejack {
                             }
                             break;
                         } else {
-                            System.out.println("You Alose!");
+                            System.out.println("You lose!");
                             compWins++;
                             System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                             if (playerWins == 3 || compWins == 3) {
@@ -723,8 +924,113 @@ public class Bluejack {
                         }
                     } else if (compDeckTotal == 16 || compDeckTotal == 17) {
 // % +50 ihtimalle end ya da stand
+                        int t = random.nextInt(2);
+                        if (t == 1) {
+                            System.out.println("Computer stands.");
+                            if (playerDeckTotal == 20 && compDeckTotal != 20) {
+                                System.out.println("You win!");
+                                playerWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
+                                System.out.println("You lose!");
+                                compWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 > playerDeckTotal && playerDeckTotal > compDeckTotal) {
+                                System.out.println("You win!");
+                                playerWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (20 == playerDeckTotal && 20 == compDeckTotal) {
+                                System.out.println("So who won? Friendship.");
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else if (compDeckTotal == playerDeckTotal) {
+                                System.out.println("So who won? Friendship.");
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            } else {
+                                System.out.println("You lose!");
+                                compWins++;
+                                System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
+                                if (playerWins == 3 || compWins == 3) {
+                                    History(PlayerName, playerWins, compWins);
+                                    System.out.println("GAME OVER");
+                                    return;
+                                }
+                                System.out.println("Ready for another round?(I won't take no for an answer): ");
+                                String l = sc.next();
+                                if (l.equalsIgnoreCase("yes")) {
+                                    break;
+                                }
+                                break;
+                            }
+                        } else {
+                            randomRenk = renk[random.nextInt(renk.length)];
+                            randomSayi = sayi[random.nextInt(sayi.length)];
+                            String compRandomNew = randomRenk + " " + randomSayi;
+                            System.out.println("Comp Draw: " + compRandomNew);
+                            String[] newCompDeck = new String[CompDeck.length + 1];
+                            System.arraycopy(CompDeck, 0, newCompDeck, 0, CompDeck.length);
+                            newCompDeck[CompDeck.length] = compRandomNew;
+                            CompDeck = newCompDeck;
+                            compDeckTotal = calculateDeckTotal(CompDeck, random.nextInt(11) + 1);
+                            System.out.println("Comp's Deck Total: " + compDeckTotal);
+
+                        }
                     } else {
-                        String cardToPlay = findCardToComplete20(compDeckTotal);
+                       // String cardToPlay = findCardToComplete20(compDeckTotal);
                         if (cardToPlay != null) {
                             System.out.println("Comp played: " + cardToPlay);
                             String[] newCompDeck = new String[CompDeck.length + 1];
@@ -798,23 +1104,21 @@ public class Bluejack {
             }
         }
     }
-    private static boolean checkBlueCards(String[] deck) {
-        boolean hasBlueCard = false;
-
-        for (String card : deck) {
-            if (card.startsWith("Blue")) {
-                System.out.println("Player's Deck Total (Blue): " + calculateDeckTotal(deck, random.nextInt(11) + 1));
-                hasBlueCard = true;
-            }
-        }
-
-        return hasBlueCard;
-    }
 
     private static int calculateDeckTotal(String[] deck, int playerRandomNew) {
         int total = 0;
+        boolean BlueCards = true;
         for (String card : deck) {
             total += getValue(card, playerRandomNew);
+            if (card != null && !card.startsWith("Blue")) {
+                BlueCards = false;
+            }
+        }
+
+
+        if (total == 20 && BlueCards) {
+            System.out.println("Player wins with a total of 20 using only blue cards!");
+            System.exit(0);
         }
 
         return total;
@@ -828,7 +1132,7 @@ public class Bluejack {
                 if ("x2".equals(parts[1])) {
                     return playerRandomNew;
                 } else if ("+/-".equals(parts[1])) {
-                    return (-playerRandomNew);
+                    return -2 * playerRandomNew;
                 } else {
                     return Integer.parseInt(parts[1]);
                 }
@@ -840,5 +1144,3 @@ public class Bluejack {
 
     }
 }
-
-
