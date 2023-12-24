@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class deneme {
+public class Bluejack {
     private static Random random = new Random();
     private static Scanner sc = new Scanner(System.in);
     private static String[] PlayerHand;
@@ -138,8 +138,8 @@ public class deneme {
             System.out.println("Comp's Deck: " + randomRenk + " " + randomSayi);
 
 
-            System.out.println("Player's HandASD: " + Arrays.toString(PlayerHand));
-            System.out.println("Comp's HandASD: " + Arrays.toString(CompHand));
+            System.out.println("Player's Hand: " + Arrays.toString(PlayerHand));
+
 
 
             int playerDeckTotal = calculateDeckTotal(PlayerDeck, random.nextInt(11) + 1);
@@ -198,14 +198,14 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
                             }
                             break;
                         } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
-                            System.out.println("You Blose!");
+                            System.out.println("You lose!");
                             compWins++;
                             System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                             if (playerWins == 3 || compWins == 3) {
@@ -213,7 +213,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -228,7 +228,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -242,7 +242,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -256,7 +256,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -271,7 +271,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -294,7 +294,7 @@ public class deneme {
                         }
                     }
 
-                        if (compDeckTotal > 20 && playerDeckTotal > 20) {
+                    if (compDeckTotal > 20 && playerDeckTotal > 20) {
                         System.out.println("So who won? Friendship.");
                         System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
@@ -302,13 +302,13 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
                         }
                         break;
-                    } else if (playerDeckTotal > 20) {
+                    } else if (playerDeckTotal > 20 && 21 > compDeckTotal) {
                         System.out.println("Bust! Easy there tiger, you passed 20.");
                         compWins++;
                         System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
@@ -317,13 +317,13 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
                         }
                         break;
-                    } else if (compDeckTotal > 20) {
+                    } else if (compDeckTotal > 20 && 21 > playerDeckTotal) {
                         System.out.println("Comp busted! You got lucky.");
                         playerWins++;
                         System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
@@ -332,7 +332,7 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -364,7 +364,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -379,7 +379,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -394,7 +394,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -408,7 +408,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -422,7 +422,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -437,7 +437,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -468,14 +468,14 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
                         }
                         break;
                     } else if (20 > compDeckTotal && compDeckTotal > playerDeckTotal) {
-                        System.out.println("You Glose!");
+                        System.out.println("You lose!");
                         compWins++;
                         System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
                         if (playerWins == 3 || compWins == 3) {
@@ -483,7 +483,7 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -498,13 +498,13 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
                         }
                         break;
-                    } else if(compDeckTotal > 20 && playerDeckTotal < 20){
+                    } else if(compDeckTotal > 20 && playerDeckTotal < 21){
                         System.out.println("You win!");
                         playerWins++;
                         System.out.println("Player's Wins= " + playerWins + " | Comp's Wins= " + compWins);
@@ -513,7 +513,7 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -527,7 +527,7 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -541,7 +541,7 @@ public class deneme {
                             System.out.println("GAME OVER");
                             return;
                         }
-                        System.out.println("Ready for another round? (yes/no): ");
+                        System.out.println("Ready for another round?(I won't take no for an answer): ");
                         String l = sc.next();
                         if (l.equalsIgnoreCase("yes")) {
                             break;
@@ -555,9 +555,9 @@ public class deneme {
 
 
                     } else {
-                        System.out.println("Player'sABO Hand: " + Arrays.toString(PlayerHand));
+                        System.out.println("Player's Hand: " + Arrays.toString(PlayerHand));
 
-                        System.out.println("Comp'sABO Hand: " + Arrays.toString(CompHand));
+                        System.out.println("Comp's Hand: " + Arrays.toString(CompHand));
 
 
                         System.out.println("Please enter the index of the card you want to play (1-4): ");
@@ -641,7 +641,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -656,7 +656,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -671,7 +671,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -685,7 +685,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -699,7 +699,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -714,7 +714,7 @@ public class deneme {
                                 System.out.println("GAME OVER");
                                 return;
                             }
-                            System.out.println("Ready for another round? (yes/no): ");
+                            System.out.println("Ready for another round?(I won't take no for an answer): ");
                             String l = sc.next();
                             if (l.equalsIgnoreCase("yes")) {
                                 break;
@@ -799,12 +799,16 @@ public class deneme {
         }
     }
     private static boolean checkBlueCards(String[] deck) {
+        boolean hasBlueCard = false;
+
         for (String card : deck) {
             if (card.startsWith("Blue")) {
-                return true;
+                System.out.println("Player's Deck Total (Blue): " + calculateDeckTotal(deck, random.nextInt(11) + 1));
+                hasBlueCard = true;
             }
         }
-        return false;
+
+        return hasBlueCard;
     }
 
     private static int calculateDeckTotal(String[] deck, int playerRandomNew) {
