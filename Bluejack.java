@@ -131,7 +131,7 @@ public class Bluejack {
             int randomSayi = sayi[random.nextInt(sayi.length)];
             String[] PlayerDeck = {randomRenk + " " + randomSayi};
             System.out.println("Player's Deck: " + randomRenk + " " + randomSayi);
-            System.out.println("deneme");
+            System.out.println("deneme yapmak");
 
             randomRenk = renk[random.nextInt(renk.length)];
             randomSayi = sayi[random.nextInt(sayi.length)];
